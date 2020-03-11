@@ -4,13 +4,14 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import * as React from 'react';
-import { FormikContext } from './FormikContext';
-import { getIn } from './utils/getIn';
-import { isInputEvent, isReactNative } from './utils/is';
-import { useStateAndRef } from './utils/useStateAndRef';
-import { useEventCallback } from './utils/useEventCallback';
-import { ValidatorFn, FieldStateAndOperations, $FixMe } from './types';
+import * as React from 'react'
+
+import {FormikContext} from './FormikContext'
+import {$FixMe, FieldStateAndOperations, ValidatorFn} from './types'
+import {getIn} from './utils/getIn'
+import {isInputEvent, isReactNative} from './utils/is'
+import {useEventCallback} from './utils/useEventCallback'
+import {useStateAndRef} from './utils/useStateAndRef'
 
 export interface UseFieldOptions<V> {
   name: string;
@@ -139,7 +140,6 @@ export function useField<V = unknown>(
       const err = validate(eventOrValue.target.value);
       setError(err);
     }
-    forceUpdate();
   });
   const handleBlur = useEventCallback(eventOrValue => {
     if (isInputEvent(eventOrValue)) {
@@ -153,7 +153,6 @@ export function useField<V = unknown>(
     if (validate) {
       setError(validate(eventOrValue.target.value));
     }
-    forceUpdate();
   });
   let field: FieldInputProps<V> = {
     name,
