@@ -11,10 +11,9 @@ import isPlainObject from 'lodash/isPlainObject'
 
 import {$FixMe, FieldStateAndOperations} from './types'
 import {getIn} from './utils/getIn'
+import {useEventCallback, useForceRender} from './utils/hooks'
 import {isPromise} from './utils/is'
 import {setIn} from './utils/setIn'
-import {useEventCallback} from './utils/useEventCallback'
-import {useForceRender} from './utils/useForceRender'
 
 /**
  * Values of fields in the form
