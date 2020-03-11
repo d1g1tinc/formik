@@ -1,18 +1,20 @@
+import * as React from 'react'
+
 /**
  * Copyright (c) Formik, Inc. and its affiliates.
  *
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import deepmerge from 'deepmerge';
-import isPlainObject from 'lodash/isPlainObject';
-import * as React from 'react';
-import { setIn } from './utils/setIn';
-import { getIn } from './utils/getIn';
-import { isPromise } from './utils/is';
-import { useForceRender } from './utils/useForceRender';
-import { useEventCallback } from './utils/useEventCallback';
-import { FieldStateAndOperations, $FixMe } from './types';
+import deepmerge from 'deepmerge'
+import isPlainObject from 'lodash/isPlainObject'
+
+import {$FixMe, FieldStateAndOperations} from './types'
+import {getIn} from './utils/getIn'
+import {isPromise} from './utils/is'
+import {setIn} from './utils/setIn'
+import {useEventCallback} from './utils/useEventCallback'
+import {useForceRender} from './utils/useForceRender'
 
 /**
  * Values of fields in the form
@@ -342,7 +344,7 @@ export function useFormik<Values extends FormikValues = FormikValues>({
     }
 
     const combinedErrors = deepmerge.all<FormikErrors<Values>>(
-      [fieldErrors, formSchemaErrors, formValidateErrors],
+      [fieldErrors, formSchemaErrors || {}, formValidateErrors || {}],
       { arrayMerge }
     );
 
