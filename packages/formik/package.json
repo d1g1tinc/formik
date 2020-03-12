@@ -1,8 +1,11 @@
 {
   "name": "@d1g1t/formik",
   "private": false,
+  "publishConfig": {
+    "access": "public"
+  },
   "description": "Forms in React, without tears",
-  "version": "3.0.4",
+  "version": "3.0.5",
   "license": "MIT",
   "author": "Jared Palmer <jared@palmer.net>",
   "repository": "d1g1tinc/formik",
@@ -117,5 +120,5 @@
       "limit": "14 kB"
     }
   ],
-  "gitHead": "eb8bc0111294f3fedff9d954fcabfd660a252920"
+  "gitHead": "f06480c887e3bcf7ad6b9e9ed28304e92692b5c4"
 }
