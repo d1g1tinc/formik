@@ -99,7 +99,7 @@ interface FormikHelpers<Values> {
     shouldValidate?: boolean
   ): void;
   /** Validate form values */
-  validateForm(values?: any): Promise<FormikErrors<Values>>;
+  validateForm(values?: any): void;
   /** Validate field value */
   validateField(field: string): void;
   /** Reset form */
@@ -248,7 +248,29 @@ export function useFormik<Values extends FormikValues = FormikValues>({
   });
 
   const validateForm = useEventCallback(() => {
-    throw new Error('not implemented');
+    if (validationSchema) {
+      try {
+        validateYupSchema(getValues(), validationSchema, true);
+        setErrors({});
+      } catch (err) {
+        // Yup will throw a validation error if validation fails. We catch those and
+        // resolve them into Formik errors. We can sniff if something is a Yup error
+        // by checking error.name.
+        // @see https://github.com/jquense/yup#validationerrorerrors-string--arraystring-value-any-path-string
+        if (err.name === 'ValidationError') {
+          const formSchemaErrors = yupToFormErrors(err);
+          setErrors(formSchemaErrors);
+        } else {
+          // We throw any other errors
+          if (process.env.NODE_ENV !== 'production') {
+            console.warn(
+              `Warning: An unhandled error was caught during validation in <Formik validationSchema />`,
+              err
+            );
+          }
+        }
+      }
+    }
   });
 
   const validateField = useEventCallback(() => {

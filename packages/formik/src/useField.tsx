@@ -67,9 +67,12 @@ export function useField<V = unknown>(
     format = defaultFormatFn,
     formatOnBlur = false,
   } = options;
-  const { register, unregister, initialValues, forceUpdate } = React.useContext(
-    FormikContext
-  );
+  const {
+    register,
+    unregister,
+    initialValues,
+    validateForm,
+  } = React.useContext(FormikContext);
   const [value, setValue, valueRef] = useStateAndRef<V>(
     options.initialValue || getIn(initialValues, options.name) || ''
   );
@@ -139,6 +142,7 @@ export function useField<V = unknown>(
       const err = validate(eventOrValue.target.value);
       setError(err);
     }
+    validateForm();
   });
   const handleBlur = useEventCallback(eventOrValue => {
     if (isInputEvent(eventOrValue)) {
@@ -152,6 +156,7 @@ export function useField<V = unknown>(
     if (validate) {
       setError(validate(eventOrValue.target.value));
     }
+    validateForm();
   });
   let field: FieldInputProps<V> = {
     name,
