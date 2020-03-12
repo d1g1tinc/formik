@@ -1,10 +1,11 @@
 {
-  "name": "formik",
+  "name": "@d1g1t/formik",
+  "private": false,
   "description": "Forms in React, without tears",
-  "version": "2.1.4",
+  "version": "3.0.0",
   "license": "MIT",
   "author": "Jared Palmer <jared@palmer.net>",
-  "repository": "jaredpalmer/formik",
+  "repository": "d1g1tinc/formik",
   "keywords": [
     "formik",
     "react",

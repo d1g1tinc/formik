@@ -9,3 +9,5 @@ export * from './useField';
 export * from './FormikContext';
 export * from './Form';
 export * from './Field';
+
+export * from './types';
